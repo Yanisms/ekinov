@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKINOV STUDIO | Création Digitale</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. CHARTE THÈME CLAIR --- */
+        :root {
+            --bg-light: #F4F6F8;
+            --bg-card: #FFFFFF;
+            --accent: #7AC1B9;
+            --text-main: #1A1A1A;
+            --text-dim: #555555;
+            --border-light: rgba(0,0,0,0.08);
+            --font: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            font-family: var(--font);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. TYPOGRAPHIE --- */
+        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-main); }
+        h2 { font-size: 2.2rem; color: var(--accent); margin-bottom: 2rem; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
+        h3 { font-size: 1.1rem; font-weight: 700; margin: 0.5rem 0; color: var(--text-main); }
+        p { color: var(--text-dim); font-size: 0.95rem; }
+        
+        /* --- 3. NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; color: var(--text-main); }
+        .logo span { color: var(--accent); }
+        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 2rem; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .cta-btn { background-color: var(--accent); color: #fff; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: 700; box-shadow: 0 4px 15px rgba(122, 193, 185, 0.3); }
+
+        /* --- 4. SECTIONS --- */
+        section { padding: 5rem 5%; }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            background: radial-gradient(circle at top right, #ffffff 0%, var(--bg-light) 70%);
+            padding-top: 8rem;
+            padding-left: 10%; padding-right: 10%;
+        }
+        .hero-content { flex: 1; max-width: 600px; }
+        .hero-tag { color: var(--accent); letter-spacing: 3px; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 1rem; display: block; font-weight: 700; }
+        .hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; }
+
+        /* --- ANIMATION LOGO CSS (Pupille uniquement) --- */
+        .eye-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0, 0.08));
+        }
+
+        .eye-pupil {
+            position: absolute;
+            width: 35%;
+            height: auto;
+            z-index: 0;
+            /* Animation de 5 secondes en boucle */
+            animation: pupilScan 5s ease-in-out infinite;
+        }
+
+        .eye-contour {
+            position: relative;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+            /* L'animation de clignement a été retirée ici */
+        }
+
+        /* --- MOUVEMENT DE LA PUPILLE --- */
+        @keyframes pupilScan {
+            0% { transform: translate(0, 0); }      /* Centre */
+            15% { transform: translate(-35%, 0); }  /* Gauche */
+            35% { transform: translate(35%, 0); }   /* Droite */
+            50% { transform: translate(0, 0); }     /* Centre */
+            100% { transform: translate(0, 0); }    /* Pause au centre */
+        }
+
+
+        /* --- RESTE DU SITE --- */
+        .flex-piliers { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+        .card-pilier { background: var(--bg-card); border-radius: 12px; padding: 1rem; text-align: center; border: 1px solid var(--border-light); transition: all 0.3s ease; flex: 0 1 160px; min-width: 150px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .card-pilier:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(122, 193, 185, 0.15); }
+        .img-carre { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem; }
+
+        .missions-section { background-color: var(--bg-card); padding-left: 10%; padding-right: 10%; }
+        .missions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 2rem; }
+        .mission-col h3 { font-size: 1.5rem; color: var(--text-main); border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 1.5rem; padding-bottom: 0.5rem; }
+        .mission-list li { list-style: none; color: var(--text-dim); margin-bottom: 0.8rem; padding-left: 1rem; border-left: 2px solid var(--border-light); font-size: 0.95rem; font-weight: 500; }
+
+        .grid-team { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 1.5%; }
+        .card-team { text-align: left; background: var(--bg-card); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-light); width: 18%; min-width: 150px; }
+        .img-portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; filter: grayscale(100%); transition: filter 0.3s ease; margin-bottom: 1rem; }
+        .card-team:hover .img-portrait { filter: grayscale(0%); }
+        .role-tag { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-top: 0.2rem; display: block; }
+
+        footer { text-align: center; padding: 4rem 10%; background: var(--bg-card); border-top: 1px solid var(--border-light); }
+        .contact-link { font-size: 1.5rem; color: var(--text-main); text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 5px; font-weight: 700; }
+
+        @media (max-width: 900px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 6rem; }
+            .hero-content { margin-top: 2rem; }
+            .eye-container { max-width: 250px; }
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .card-team { width: 45%; } 
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">EKINOV<span>.</span></div>
+        <div class="nav-links">
+            <a href="#adn">Valeurs</a>
+            <a href="#missions">Missions</a>
+            <a href="#team">L'Équipe</a>
+            <a href="mailto:ekinov.studio@gmail.com" class="cta-btn">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Agence de Création Digitale</span>
+            <h1>Façonner demain,<br>durablement.</h1>
+            <p style="margin-bottom: 2rem;">
+                Vision, Équité, Ingéniosité. Nous concevons des stratégies de communication fluides qui traversent le temps.
+            </p>
+            <a href="#adn" style="color:var(--text-main); text-decoration:none; border-bottom:2px solid var(--accent); font-weight:600;">Découvrir l'agence ↓</a>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="eye-container">
+                <img src="./Images/rond.png" alt="Pupille" class="eye-pupil">
+                <img src="./Images/contour.png" alt="Contour Oeil" class="eye-contour">
+            </div>
+        </div>
+    </section>
+
+    <section id="adn">
+        <h2>Notre ADN</h2>
+        <div class="flex-piliers">
+            <div class="card-pilier">
+                <img src="./Pilliers/visionnaire.png" alt="Visionnaire" class="img-carre">
+                <h3>Visionnaire</h3>
+            </div>
+            <div class="card-pilier">
+                <img src="./Pilliers/fluide.png" alt="Fluide" class="img-carre">
+                <h3>Fluide</h3>
+            </div>
+            <div class="card-pilier">
+                <img src="./Pilliers/equite.png" alt="Équité" class="img-carre">
+                <h3>Équité</h3>
+            </div>
+            <div class="card-pilier">
+                <img src="./Pilliers/intemporel.png" alt="Intemporel" class="img-carre">
+                <h3>Intemporel</h3>
+            </div>
+            <div class="card-pilier">
+                <img src="./Pilliers/ingenieux.png" alt="Ingénieux" class="img-carre">
+                <h3>Ingénieux</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="missions" class="missions-section">
+        <h2>Nos Missions</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto;">
+            De la stratégie à la production, nous accompagnons les marques visionnaires.
+        </p>
+
+        <div class="missions-grid">
+            <div class="mission-col">
+                <h3>Branding</h3>
+                <ul class="mission-list">
+                    <li>Identité Visuelle & Logos</li>
+                    <li>Charte Graphique Complète</li>
+                    <li>Refonte de Marque</li>
+                    <li>Direction Artistique</li>
+                </ul>
+            </div>
+            <div class="mission-col">
+                <h3>Social Media</h3>
+                <ul class="mission-list">
+                    <li>Stratégie Éditoriale</li>
+                    <li>Création de Contenu</li>
+                    <li>Community Management</li>
+                    <li>Publicité (Ads)</li>
+                </ul>
+            </div>
+            <div class="mission-col">
+                <h3>Motion & Web</h3>
+                <ul class="mission-list">
+                    <li>Motion Design</li>
+                    <li>Animation Logo</li>
+                    <li>Montage Vidéo</li>
+                    <li>Webdesign UI/UX</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <h2>L'Équipe</h2>
+        <p style="text-align:center; margin-bottom:3rem;">5 experts, une vision commune.</p>
+        
+        <div class="grid-team">
+            
+            <div class="card-team">
+                <img src="./Équipe/roman.png" alt="Directeur" class="img-portrait">
+                <h3>Roman MARTY</h3>
+                <span class="role-tag">Direction</span>
+            </div>
+
+            <div class="card-team">
+                <img src="./Équipe/yanis.png" alt="Directeur Artistique" class="img-portrait">
+                <h3>Yanis MAS</h3>
+                <span class="role-tag">Direction Artistique</span>
+            </div>
+
+            <div class="card-team">
+                <img src="./Équipe/toine.png" alt="Motion Designer" class="img-portrait">
+                <h3>Toine DUBART</h3>
+                <span class="role-tag">Motion Designer</span>
+            </div>
+
+            <div class="card-team">
+                <img src="./Équipe/gianni.png" alt="Graphiste" class="img-portrait">
+                <h3>Gianni OLIVER</h3>
+                <span class="role-tag">Graphiste</span>
+            </div>
+            
+            <div class="card-team">
+                <img src="./Équipe/thomas.png" alt="Community Manager" class="img-portrait">
+                <h3>Thomas LOURADOUR</h3>
+                <span class="role-tag">Brand Content</span>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Un projet ?</h2>
+        <p>Notre porte est ouverte.</p>
+        <br>
+        <a href="mailto:ekinov.studio@gmail.com" class="contact-link">ekinov.studio@gmail.com</a>
+        <br><br><br>
+        <p style="font-size:0.8rem; opacity:0.5">© 2026 EKINOV STUDIO</p>
+    </footer>
+
+</body>
+</html>
